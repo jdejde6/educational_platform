@@ -39,6 +39,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 
 
 db.init_app(app)
+# إنشاء جميع الجداول في قاعدة البيانات
+with app.app_context():
+    db.create_all()
+    print("Database tables created successfully.")
 
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(entity_bp, url_prefix="/api/entities")
